@@ -1,0 +1,1005 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AshIT — Modern Cloud & Security Solutions</title>
+  <meta name="description" content="AshIT — AI Integration, Cloud Infrastructure, Cybersecurity, Development, Training and Consulting" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#ffffff;
+      --accent-1:#2b0917; /* very dark purple */
+      --accent-2:#caa1ff; /* light purple */
+      --accent-3:#b07bff; /* mid purple */
+      --accent-4:#ff6b48; /* orange */
+      --accent-5:#c94b39; /* red/brown */
+      --muted:#6b6b6b;
+      --card:#fcfcfd;
+      --glass: rgba(255,255,255,0.7);
+      --maxw:1100px;
+      --radius:12px;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{height:100%;margin:0;background:var(--bg);color:#111}
+    a{color:var(--accent-4);text-decoration:none;transition: color 0.2s ease;}
+    a:hover{color:var(--accent-5)}
+
+    /* Notification Banner */
+    .dev-notification {
+      background: var(--accent-1);
+      color: white;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 500;
+      position: relative;
+    }
+    .dev-notification .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      padding: 10px 24px;
+    }
+    .dev-notification p {
+      margin: 0;
+    }
+    #closeNotification {
+      background: transparent;
+      border: 0;
+      color: white;
+      font-size: 24px;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0 8px;
+      position: absolute;
+      right: 24px;
+      opacity: 0.7;
+      transition: opacity 0.2s ease;
+    }
+    #closeNotification:hover {
+      opacity: 1;
+    }
+
+    /* Header */
+    header{
+      position:sticky;
+      top:0;
+      backdrop-filter: blur(8px);
+      background:rgba(255,255,255,0.85);
+      border-bottom:1px solid #eee;
+      z-index:40;
+    }
+    .container{max-width:var(--maxw);margin:0 auto;padding:24px}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand .logo{width:56px;height:36px}
+    .brand h1{font-size:18px;margin:0;letter-spacing:0.3px}
+    
+    nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}
+    nav li{font-weight:600;color:#333}
+    nav li a {
+      color: #333;
+      padding: 8px 4px;
+      position: relative;
+    }
+    nav li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-3);
+      transition: width 0.3s ease;
+    }
+    nav li a:hover::after {
+      width: 100%;
+    }
+
+    .cta{
+      background:linear-gradient(90deg,var(--accent-4),var(--accent-5));
+      color:white;
+      padding:10px 14px;
+      border-radius:10px;
+      font-weight:700;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(255, 107, 72, 0.2);
+    }
+    .cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(255, 107, 72, 0.3);
+    }
+
+    /* Hero */
+    .hero{display:flex;gap:48px;align-items:center;padding:64px 0 48px}
+    .hero-left{flex:1}
+    .eyebrow{
+      display:inline-block;
+      background:linear-gradient(90deg,var(--accent-2),var(--accent-3));
+      color:white;
+      padding:6px 10px;
+      border-radius:999px;
+      font-weight:700;
+      font-size:12px;
+    }
+    .hero h2{font-size:40px;margin:18px 0 12px;line-height:1.15;letter-spacing:-0.5px}
+    .hero p{color:var(--muted);margin:0 0 24px;font-size:17px;line-height:1.6}
+    .hero-actions{display:flex;gap:12px}
+    
+    .btn{
+      padding:12px 18px;
+      border-radius:10px;
+      border:0;
+      font-weight:700;
+      cursor:pointer;
+      transition: all 0.3s ease;
+    }
+    .btn-primary{
+      background:linear-gradient(90deg,var(--accent-4),var(--accent-5));
+      color:#fff;
+      box-shadow: 0 4px 12px rgba(255, 107, 72, 0.2);
+    }
+    .btn:hover{transform: translateY(-2px);}
+    .btn-primary:hover{box-shadow: 0 6px 16px rgba(255, 107, 72, 0.3);}
+    .btn-ghost{
+      background:transparent;
+      border:1px solid #ddd;
+      color: #333;
+    }
+    .btn-ghost:hover{background:#f9f9f9; border-color: #ccc;}
+
+    .hero-right{flex:1;display:flex;justify-content:center}
+    .card{
+      background:var(--card);
+      border-radius:18px;
+      padding:24px;
+      box-shadow:0 12px 32px rgba(18,18,18,0.07);
+      max-width:480px;
+      width:100%;
+      border: 1px solid #f0f0f0;
+    }
+    .service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+    .svc{display:flex;gap:12px;align-items:center}
+    .svc svg{width:36px;height:36px;color:var(--accent-3)}
+
+    /* Services Section */
+    section {
+      padding: 48px 0;
+    }
+    .section-header {
+      max-width: 700px;
+      margin-bottom: 24px;
+    }
+    .section-header h2 {
+      font-size: 32px;
+      margin: 0 0 8px;
+    }
+    .section-header p {
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    .service-card{
+      background: #fff;
+      border-radius:14px;
+      padding:24px;
+      box-shadow:0 6px 18px rgba(10,10,10,0.04);
+      border: 1px solid #f0f0f0;
+      transition: all 0.3s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow:0 10px 24px rgba(10,10,10,0.08);
+    }
+    .service-card-icon {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 12px;
+      color: var(--accent-3);
+    }
+    .service-card h3{margin:0 0 8px; font-size: 18px;}
+    .service-card p{margin:0;color:var(--muted);font-size:15px; line-height: 1.6;}
+
+    /* About Section */
+    .about{display:flex;gap:48px;align-items:center;padding:36px 0}
+    .about-content { flex: 1; }
+    .about-image {
+      flex: 1;
+      max-width: 450px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .about-image img {
+      width: 100%;
+      border-radius:14px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    }
+    .about-content ul {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 20px;
+      color: var(--muted);
+    }
+    .about-content li {
+      position: relative;
+      padding-left: 28px;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+    .about-content li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--accent-4);
+      font-weight: 700;
+    }
+
+    /* Contact Section */
+    .contact{padding:36px 0}
+    form{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:820px; margin-top: 24px;}
+    input,textarea{
+      padding:14px;
+      border:1px solid #e6e6e9;
+      border-radius:10px;
+      font-size:15px;
+      font-family: 'Inter', sans-serif;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent-3);
+      box-shadow: 0 0 0 3px rgba(176, 123, 255, 0.2);
+    }
+    textarea{grid-column:1/-1;min-height:120px; resize: vertical;}
+    form .btn-primary { grid-column: 1 / -1; max-width: 200px; }
+
+    /* New Quote Toggle */
+    .quote-toggle {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .quote-toggle .btn {
+      flex: 1;
+    }
+    .quote-toggle .btn.active {
+      background: #f0ebff;
+      border-color: var(--accent-3);
+      color: var(--accent-1);
+      box-shadow: none;
+    }
+    .quote-toggle .btn:not(.active):hover {
+      transform: none;
+      background: #f9f9f9;
+    }
+
+    .service-fieldset {
+      grid-column: 1 / -1;
+      border: 1px solid #e6e6e9;
+      border-radius: 10px;
+      padding: 16px;
+      margin: 0;
+    }
+    .service-fieldset legend {
+      font-weight: 600;
+      font-size: 15px;
+      padding: 0 8px;
+      margin-left: 8px;
+    }
+    .checkbox-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .checkbox-grid label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent-4);
+    }
+
+    /* Footer */
+footer {
+  padding: 36px 0;
+  border-top: 1px solid #f0f0f0;
+  color: var(--muted);
+  margin-top: 48px;
+}
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap; /* Allows wrapping on small screens */
+}
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.footer-contact {
+  font-size: 14px;
+  text-align: right; /* Aligns contact info to the right */
+}
+.footer-contact a {
+  color: var(--muted);
+}
+.footer-contact a:hover {
+  color: var(--accent-4);
+  text-decoration: underline;
+}
+.social-links {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end; /* Aligns icons to the right */
+  margin-top: 12px;
+}
+.social-links a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.social-links a:hover {
+  color: var(--accent-4);
+}
+.social-links svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+/* Responsive adjustment for footer */
+@media (max-width: 600px) {
+  .footer-content {
+    flex-direction: column; /* Stack on small screens */
+    align-items: flex-start; /* Align everything to the start */
+  }
+  .footer-contact {
+    text-align: left; /* Align left when stacked */
+  }
+  .social-links {
+    justify-content: flex-start; /* Align icons left when stacked */
+  }
+}
+
+    /* Modal */
+    .modal-overlay {
+      display: none; /* Hidden by default */
+      position: fixed;
+      z-index: 100;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.6);
+      backdrop-filter: blur(5px);
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.open {
+      display: flex;
+      opacity: 1;
+    }
+    .modal-content {
+      background: #fff;
+      margin: auto;
+      padding: 32px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      width: 90%;
+      max-width: 500px;
+      position: relative;
+      transform: scale(0.95);
+      transition: transform 0.3s ease;
+    }
+    .modal-overlay.open .modal-content {
+      transform: scale(1);
+    }
+    .modal-close {
+      color: #aaa;
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .modal-close:hover { color: #333; }
+    .modal-content h3 {
+      margin-top: 0;
+      margin-bottom: 16px;
+      font-size: 22px;
+    }
+    .modal-content p {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .modal-form label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .modal-form input {
+      width: 100%;
+      margin-bottom: 16px;
+    }
+    .modal-form .btn {
+      width: 100%;
+    }
+
+
+    /* Animation Classes */
+    .animate-on-scroll {
+      opacity: 0;
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .animate-on-scroll.slide-in-up {
+      transform: translateY(30px);
+    }
+    .animate-on-scroll.fade-in {
+      transform: translateY(0);
+    }
+    .animate-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Staggered animation */
+    .services-grid .animate-on-scroll {
+      transition-delay: var(--delay, 0s);
+    }
+
+    /* Responsive */
+    @media (max-width:900px){
+      .services-grid{grid-template-columns:repeat(2,1fr)}
+      .hero{flex-direction:column; gap: 32px; text-align: center;}
+      .hero-left { align-items: center; text-align: center; }
+      .hero-actions { justify-content: center; }
+      .hero-right{order: -1}
+      .about { flex-direction: column; }
+      .about-image { max-width: 100%; order: -1; }
+      nav ul{display:none}
+      .mobile-toggle{display:block}
+      .brand h1{font-size:16px}
+      form{grid-template-columns:1fr}
+      form .btn-primary { max-width: 100%; }
+      .footer-content { flex-direction: column; gap: 24px; }
+    }
+    @media (max-width:520px){
+      .services-grid{grid-template-columns:1fr}
+      .service-grid{grid-template-columns:1fr; gap: 20px;}
+      .hero h2 { font-size: 32px; }
+      .hero p { font-size: 16px; }
+      .container { padding: 20px; }
+      .quote-toggle { flex-direction: column; }
+      .checkbox-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Mobile Menu */
+    .mobile-toggle{display:none;background:transparent;border:0;font-size:24px; cursor: pointer;}
+    .mobile-nav{display:none}
+    .mobile-nav.open{display:block;padding:8px 0}
+    .mobile-nav a{
+      display:block;
+      padding:12px 0;
+      border-radius:8px;
+      font-weight: 600;
+      font-size: 16px;
+      color: #333;
+    }
+    .mobile-nav a:hover { background: #f4f4f4; }
+
+    /* Small Utilities */
+    .muted{color:var(--muted)}
+  </style>
+</head>
+<body>
+  <!-- Notification Banner -->
+  <div id="devNotification" class="dev-notification">
+    <div class="container">
+      <p>Welcome! This site is currently under construction. New features are being added.</p>
+      <button id="closeNotification" aria-label="Close notification">&times;</button>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <!-- logo (SVG) -->
+        <svg class="logo" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+          <g transform="translate(40,20)">
+            <rect x="0" y="0" width="36" height="36" rx="3" transform="rotate(45 18 18)" fill="#2b0917" />
+            <rect x="32" y="0" width="36" height="36" rx="3" transform="rotate(45 50 18)" fill="#caa1ff" />
+            <rect x="64" y="0" width="36" height="36" rx="3" transform="rotate(45 82 18)" fill="#b07bff" />
+            <rect x="96" y="0" width="36" height="36" rx="3" transform="rotate(45 114 18)" fill="#ff6b48" />
+            <rect x="48" y="32" width="60" height="36" rx="3" transform="rotate(45 78 50)" fill="#c94b39" opacity="0.95" />
+          </g>
+        </svg>
+        <div>
+          <h1>AshIT</h1>
+          <div style="font-size:12px;color:var(--muted);margin-top:4px">Cloud • AI • Security</div>
+        </div>
+      </div>
+
+      <nav>
+        <button class="mobile-toggle" id="mToggle" aria-label="Toggle navigation">☰</button>
+        <ul id="mainNav">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#" id="manageProjectLink">Manage Project</a></li>
+        </ul>
+      </nav>
+
+      <div style="display:flex;align-items:center;gap:12px">
+        <a class="cta" href="#contact">Get started</a>
+      </div>
+    </div>
+    <!-- Mobile Nav Container -->
+    <div class="container mobile-nav" id="mobileNav"></div>
+  </header>
+
+  <main class="container">
+    <!-- Hero Section -->
+    <section class="hero animate-on-scroll fade-in is-visible"> <!-- is-visible to animate on load -->
+      <div class="hero-left">
+        <span class="eyebrow">Modern Workplace & Cloud</span>
+        <h2>We build secure cloud platforms, integrate AI, and protect your digital business.</h2>
+        <p>From Microsoft 365 & Azure tenant setup to Intune device management, Identity & Access hardening, and AI-powered solutions — we take care of the technology while you focus on growth.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Book a call</button>
+          <a class="btn btn-ghost" href="#services">Explore services</a>
+        </div>
+        <div style="margin-top:24px;color:var(--muted);font-size:14px">Trusted by startups and small businesses • Pilot & fast delivery • 24/7 support plans</div>
+      </div>
+
+      <div class="hero-right">
+        <div class="card">
+          <strong>Quick services</strong>
+          <div class="service-grid">
+            <div class="svc">
+              <!-- Icon: Cloud -->
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 0 0 4.5 4.5h10.5a4.5 4.5 0 0 0 4.5-4.5V8.25a4.5 4.5 0 0 0-4.5-4.5H6.75a4.5 4.5 0 0 0-4.5 4.5v6.75Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75c0-1.062.37-2.05.988-2.828A4.5 4.5 0 0 1 6.75 12H17.25c1.062 0 2.05.37 2.828.988A4.5 4.5 0 0 1 21 15.75v.468c.07.01.137.02.204.03.4.057.788.134 1.15.234a4.51 4.51 0 0 1 1.146.5c.34.208.65.45.92.728.3.308.55.64.74.994.19.354.35.73.47 1.118a4.5 4.5 0 0 1-.68 4.411A4.5 4.5 0 0 1 21 22.5H3a4.5 4.5 0 0 1-3.483-1.63c-.31-.37-.56-.78-.74-1.21a4.5 4.5 0 0 1-.41-1.393c-.02-.13-.03-.26-.03-.39v-.468Z" /></svg>
+              <div>
+                <div style="font-weight:700">Tenant setup</div>
+                <div style="font-size:13px;color:var(--muted)">M365 & Azure</div>
+              </div>
+            </div>
+            <div class="svc">
+              <!-- Icon: Device Phone -->
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" /></svg>
+              <div>
+                <div style="font-weight:700">Intune</div>
+                <div style="font-size:13px;color:var(--muted)">Device management</div>
+              </div>
+            </div>
+            <div class="svc">
+              <!-- Icon: Shield Check -->
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.25 2.48-.701 3.6A11.95 11.95 0 0 1 12 21.75c-2.676 0-5.216-.784-7.299-2.15A11.95 11.95 0 0 1 3 12V6.75A11.95 11.95 0 0 1 12 2.25c2.676 0 5.216.784 7.299 2.15A11.95 11.95 0 0 1 21 12Z" /></svg>
+              <div>
+                <div style="font-weight:700">Security</div>
+                <div style="font-size:13px;color:var(--muted)">MFA & Access</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:16px;text-align:right"><small class="muted">Pilot delivery: 3–7 days</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+      <div class="section-header">
+        <h2>Our services</h2>
+        <p class="muted">Tailored packages for startups, SME and enterprise. We deliver secure, practical solutions that scale with you.</p>
+      </div>
+
+      <div class="services-grid">
+        <article class="service-card animate-on-scroll slide-in-up" style="--delay: 0s;">
+          <svg class="service-card-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.012A7.5 7.5 0 0 0 18.012 12H12v6.012Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5c.91 0 1.78.14 2.59.404.81.264 1.55.61 2.21.996a8.903 8.903 0 0 1 3.2 2.101A8.91 8.91 0 0 1 21 15.25v-.025a8.91 8.91 0 0 1-2.001 5.025 8.903 8.903 0 0 1-2.102 3.201 8.91 8.91 0 0 1-5.024 2.001 8.903 8.903 0 0 1-3.201-2.102A8.91 8.91 0 0 1 3.75 21v-.025a8.91 8.91 0 0 1 2.001-5.025 8.903 8.903 0 0 1 2.101-3.2A8.91 8.91 0 0 1 12.873 3.51a8.903 8.903 0 0 1 3.201 2.101l-.026.025" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5V12h4.5m0 0A7.5 7.5 0 0 1 12 18.012" /></svg>
+          <h3>AI Integration</h3>
+          <p>We design and deploy AI-powered features — chatbots, automation, data enrichment and analytics using Azure OpenAI and Power Platform.</p>
+        </article>
+
+        <article class="service-card animate-on-scroll slide-in-up" style="--delay: 0.1s;">
+          <svg class="service-card-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 0 1 0 3.75H5.625a1.875 1.875 0 0 1 0-3.75Z" /></svg>
+          <h3>Cloud Platforms & Infrastructure</h3>
+          <p>Azure subscription setup, networking, Azure AD, Azure SQL, governance, and cost optimization for scalable infrastructure.</p>
+        </article>
+
+        <article class="service-card animate-on-scroll slide-in-up" style="--delay: 0.2s;">
+          <svg class="service-card-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" /></svg>
+          <h3>Cybersecurity</h3>
+          <p>Identity hardening, MFA, conditional access, Defender for Business, incident response planning and security audits.</p>
+        </article>
+
+        <article class="service-card animate-on-scroll slide-in-up" style="--delay: 0s;">
+          <svg class="service-card-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5 0-3 16.5" /></svg>
+          <h3>Development</h3>
+          <p>Web & cloud-native applications, APIs, automation with Power Automate and CI/CD pipelines using GitHub Actions.</p>
+        </article>
+
+        <article class="service-card animate-on-scroll slide-in-up" style="--delay: 0.1s;">
+          <svg class="service-card-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0m-9.75 0h9.75" /></svg>
+          <h3>Consulting & Architecture</h3>
+          <p>Cloud strategy, tenant architecture, governance, naming conventions and migration planning to reduce friction.</p>
+        </article>
+
+        <article class="service-card animate-on-scroll slide-in-up" style="--delay: 0.2s;">
+          <svg class="service-card-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 21 12m0 0-1.5-1.5m1.5 1.5H16.5m-11.25 3.525L4.5 12m0 0 1.5 1.5m-1.5-1.5H8.25" /></svg>
+          <h3>Training & Support</h3>
+          <p>Role-based training, user onboarding, admin workshops, and managed support plans to keep teams productive and secure.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+      <div class="about-content animate-on-scroll fade-in">
+        <div class="section-header" style="margin-bottom: 12px;">
+          <h2>About AshIT</h2>
+        </div>
+        <p class="muted">We’re a small team of cloud engineers, security specialists and developers building secure, practical solutions for businesses that want to move faster in the cloud. Our approach is pragmatic — pilot quickly, document everything, train your people, and hand over with confidence.</p>
+        <ul>
+          <li>Fast tenant and collaboration setups</li>
+          <li>Secure-by-default configurations</li>
+          <li>Transparent pricing and handover</li>
+        </ul>
+      </div>
+      <div class="about-image animate-on-scroll fade-in">
+        <img src="https://placehold.co/450x300/f0eaff/b07bff?text=Modern+Solutions" alt="Team collaborating in a modern office" 
+             onerror="this.src='https://placehold.co/450x300/f0eaff/b07bff?text=AshIT+Solutions'; this.onerror=null;">
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+      <div class="section-header">
+        <h2>Contact & Request a Quote</h2>
+        <p class="muted">Let us know what you're building. We'll reach out within one business day.</p>
+      </div>
+
+      <div class="quote-toggle">
+        <button id="showManualBtn" class="btn btn-ghost active">Select Services Manually</button>
+        <button id="showAiBtn" class="btn btn-ghost">Use AI Recommendation</button>
+      </div>
+
+      <!-- Manual Form Wrapper -->
+      <div id="manualFormWrapper">
+        <form id="contactForm" onsubmit="return handleSubmit(event)">
+          <input type="text" name="name" placeholder="Full name" required />
+          <input type="email" name="email" placeholder="Work email" required />
+          <input type="text" name="company" placeholder="Company name" />
+          <input type="text" name="subject" placeholder="Subject (e.g., Tenant setup)" />
+          
+          <fieldset class="service-fieldset">
+            <legend>Which services are you interested in? (Optional)</legend>
+            <div class="checkbox-grid">
+              <label><input type="checkbox" name="service" value="AI Integration"> AI Integration</label>
+              <label><input type="checkbox" name="service" value="Cloud Platforms"> Cloud Platforms</label>
+              <label><input type="checkbox" name="service" value="Cybersecurity"> Cybersecurity</label>
+              <label><input type="checkbox" name="service" value="Development"> Development</label>
+              <label><input type="checkbox" name="service" value="Consulting"> Consulting</label>
+              <label><input type="checkbox" name="service" value="Training"> Training & Support</label>
+            </div>
+          </fieldset>
+
+          <textarea name="message" placeholder="Tell us more about your project — goals, users, timeline..."></textarea>
+          <button type="submit" class="btn btn-primary">Send request</button>
+        </form>
+        <div id="formResult" style="margin-top:16px; font-weight: 600;"></div>
+      </div>
+
+      <!-- AI Form Wrapper (Hidden) -->
+      <div id="aiFormWrapper" style="display: none;">
+        <form id="aiContactForm" onsubmit="return handleAiSubmit(event)">
+          <p class="muted" style="margin-top: 0; font-size: 15px;">Describe your project, and our AI will help identify the services you need. We'll follow up with a full quote.</p>
+          <input type="text" name="name" placeholder="Full name" required />
+          <input type="email" name="email" placeholder="Work email" required />
+          <input type="text" name="company" placeholder="Company name" />
+          <textarea name="prompt" placeholder="Describe your project goals... e.g., 'We are a 50-person startup needing a secure cloud setup, device management for remote workers, and a customer-facing chatbot.'" style="min-height: 150px;" required></textarea>
+          <button type="submit" class="btn btn-primary">Send AI Query</button>
+        </form>
+        <div id="aiFormResult" style="margin-top:16px; font-weight: 600;"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+<footer>
+    <div class="container footer-content">
+      
+      <!-- Left Side: Brand & Copyright -->
+      <div>
+        <div class="footer-brand">
+          <!-- Logo SVG -->
+          <svg width="36" height="24" viewBox="0 0 200 120" aria-hidden>
+            <g transform="translate(12,12)">
+              <rect x="0" y="0" width="36" height="36" rx="3" transform="rotate(45 18 18)" fill="#2b0917" />
+              <rect x="32" y="0" width="36" height="36" rx="3" transform="rotate(45 50 18)" fill="#caa1ff" />
+              <rect x="64" y="0" width="36" height="36" rx="3" transform="rotate(45 82 18)" fill="#b07bff" />
+              <rect x="96" y="0" width="36" height="36" rx="3" transform="rotate(45 114 18)" fill="#ff6b48" />
+              <rect x="48" y="32" width="60" height="36" rx="3" transform="rotate(45 78 50)" fill="#c94b39" opacity="0.95" />
+            </g>
+          </svg>
+          <div>
+            <div style="font-weight:700">AshIT</div>
+            <div style="font-size:13px;color:var(--muted)">Cloud • AI • Security</div>
+          </div>
+        </div>
+        <div style="color:var(--muted);font-size:13px; margin-top: 12px;">© <span id="year"></span> AshIT — All rights reserved</div>
+      </div>
+  
+      <!-- Right Side: Contact & Socials -->
+      <div class="footer-contact">
+        <div><a href="mailto:contactus@ashit.co.za">contactus@ashit.co.za</a></div>
+        <div style="margin-top: 4px;"><a href="tel:+27787181100">+27 78 718 1100</a></div>
+        <div class="social-links">
+          <!-- Instagram Icon -->
+          <a href="https://instagram.com/allsystemshub" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.149-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.584.069-4.85c.149-3.225 1.664-4.771 4.919-4.919 1.266-.058 1.644-.07 4.85-.07zm0-2.163c-3.272 0-3.667.014-4.947.072-4.358.2-7.146 2.988-7.345 7.345-.058 1.28-.072 1.675-.072 4.947s.014 3.667.072 4.947c.2 4.358 2.988 7.146 7.345 7.345 1.28.058 1.675.072 4.947.072s3.667-.014 4.947-.072c4.358-.2 7.146-2.988 7.345-7.345.058-1.28.072-1.675.072-4.947s-.014-3.667-.072-4.947c-.2-4.358-2.988-7.146-7.345-7.345-1.28-.058-1.675-.072-4.947-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zM12 16c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4zm4.865-10.39c-.63 0-1.14.51-1.14 1.14s.51 1.14 1.14 1.14 1.14-.51 1.14-1.14-.51-1.14-1.14-1.14z"/></svg>
+          </a>
+          <!-- LinkedIn Icon -->
+          <a href="https://www.linkedin.com/in/allsystemshub" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c.622-1.226 3.033-2.242 4.5-1.242 2.5 1.72 2.5 5.72 2.5 7.477v3.001z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Project Management Modal -->
+  <div id="projectModal" class="modal-overlay">
+    <div class="modal-content">
+      <span class="modal-close" id="modalClose">&times;</span>
+      <h3>Project Dashboard Login</h3>
+      <p>Access your project status, files, and communication. (This is a placeholder for a future admin/user account page).</p>
+      <form class="modal-form" onsubmit="event.preventDefault();">
+        <label for="modal-email">Email</label>
+        <input type="email" id="modal-email" placeholder="contactus@ashit.com" required>
+        <label for="modal-pass">Password</label>
+        <input type="password" id="modal-pass" placeholder="••••••••" required>
+        <button type="submit" class="btn btn-primary">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // --- Notification Banner ---
+    const notification = document.getElementById('devNotification');
+    const closeNotification = document.getElementById('closeNotification');
+    if (notification && closeNotification) {
+      closeNotification.addEventListener('click', () => {
+        notification.style.display = 'none';
+      });
+    }
+
+    // --- Mobile Nav Toggle ---
+    const mToggle = document.getElementById('mToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    const mainNav = document.getElementById('mainNav');
+    
+    // Clone main nav links to mobile nav
+    function setupMobileNav() {
+      const navLinks = mainNav.cloneNode(true);
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileNav.classList.remove('open');
+          mobileNav.innerHTML = ''; // Clear after click
+        });
+      });
+      mobileNav.appendChild(navLinks);
+      mobileNav.classList.add('open');
+    }
+
+    mToggle && mToggle.addEventListener('click', ()=>{
+      if(mobileNav.classList.contains('open')){
+        mobileNav.classList.remove('open');
+        mobileNav.innerHTML='';
+      } else {
+        setupMobileNav();
+      }
+    });
+
+    // --- Contact Form Logic ---
+    const showManualBtn = document.getElementById('showManualBtn');
+    const showAiBtn = document.getElementById('showAiBtn');
+    const manualFormWrapper = document.getElementById('manualFormWrapper');
+    const aiFormWrapper = document.getElementById('aiFormWrapper');
+
+    if (showManualBtn && showAiBtn && manualFormWrapper && aiFormWrapper) {
+      showManualBtn.addEventListener('click', () => {
+        manualFormWrapper.style.display = 'block';
+        aiFormWrapper.style.display = 'none';
+        showManualBtn.classList.add('active');
+        showAiBtn.classList.remove('active');
+      });
+
+      showAiBtn.addEventListener('click', () => {
+        manualFormWrapper.style.display = 'none';
+        aiFormWrapper.style.display = 'block';
+        showManualBtn.classList.remove('active');
+        showAiBtn.classList.add('active');
+      });
+    }
+
+    // --- Simple Contact Form Handler (Manual) ---
+    function handleSubmit(e){
+      e.preventDefault();
+      const f = e.target;
+      const data = new FormData(f);
+      const name = data.get('name');
+      const email = data.get('email');
+      const services = data.getAll('service'); // Get all checked services
+      
+      if(!name || !email){
+        return showResult('Please fill name and email', true, 'formResult');
+      }
+      
+      // Log for demo
+      console.log('Manual Form Submitted');
+      console.log('Name:', name);
+      console.log('Email:', email);
+      console.log('Services:', services);
+      console.log('Message:', data.get('message'));
+
+      // Show success
+      f.reset();
+      showResult('Thanks — your request has been received. We will contact you within one business day.', false, 'formResult');
+    }
+
+    // --- Simple Contact Form Handler (AI) ---
+    function handleAiSubmit(e) {
+      e.preventDefault();
+      const f = e.target;
+      const data = new FormData(f);
+      const name = data.get('name');
+      const email = data.get('email');
+      const prompt = data.get('prompt');
+
+      if(!name || !email || !prompt){
+        return showResult('Please fill all fields', true, 'aiFormResult');
+      }
+
+      // Log for demo (this is where you'd call an API)
+      console.log('AI Form Submitted');
+      console.log('Name:', name);
+      console.log('Email:', email);
+      console.log('Prompt:', prompt);
+      
+      // Show success
+      f.reset();
+      showResult('Thanks! Your project has been submitted for AI analysis. We will email you a quote shortly.', false, 'aiFormResult');
+    }
+    
+    function showResult(msg, isError, elementId){
+      const el = document.getElementById(elementId);
+      if (!el) return;
+      el.style.color = isError ? '#a33' : '#2b7a49';
+      el.textContent = msg;
+      setTimeout(() => { el.textContent = ''; }, 6000); // Clear message after 6s
+    }
+
+    // --- Footer Year ---
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // --- Smooth Scroll for Header Links ---
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', function(e){
+        const href = this.getAttribute('href');
+        if(href.startsWith('#') && href.length > 1){
+          const t = document.querySelector(href);
+          if(t){
+            e.preventDefault();
+            t.scrollIntoView({behavior:'smooth'});
+          }
+        }
+      })
+    });
+
+    // --- Project Modal Logic ---
+    const projectModal = document.getElementById('projectModal');
+    const manageProjectLinks = [
+      document.getElementById('manageProjectLink'),
+      // We will add the mobile link dynamically
+    ];
+    const modalClose = document.getElementById('modalClose');
+
+    function openModal(e) {
+      e.preventDefault();
+      projectModal.classList.add('open');
+    }
+
+    function closeModal() {
+      projectModal.classList.remove('open');
+    }
+
+    // Add listener to desktop link
+    document.getElementById('manageProjectLink').addEventListener('click', openModal);
+    
+    // Add listener to mobile link when nav is created
+    const mobileNavObserver = new MutationObserver((mutations) => {
+      for (let mutation of mutations) {
+        if (mutation.type === 'childList') {
+          const mobileLink = mobileNav.querySelector('a[href="#"]'); // Find the newly added link
+          if (mobileLink && mobileLink.textContent === 'Manage Project') {
+            mobileLink.id = 'manageProjectLinkMobile';
+            mobileLink.addEventListener('click', (e) => {
+              openModal(e);
+              mobileNav.classList.remove('open'); // Close nav
+              mobileNav.innerHTML='';
+            });
+          }
+        }
+      }
+    });
+    mobileNavObserver.observe(mobileNav, { childList: true });
+
+
+    modalClose.addEventListener('click', closeModal);
+    projectModal.addEventListener('click', (e) => {
+      if (e.target === projectModal) { // Click on overlay
+        closeModal();
+      }
+    });
+
+    // --- Scroll Animations ---
+    const scrollElements = document.querySelectorAll('.animate-on-scroll');
+
+    const elementInView = (el, dividend = 1) => {
+      const elementTop = el.getBoundingClientRect().top;
+      return (
+        elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
+      );
+    };
+
+    const displayScrollElement = (el) => {
+      el.classList.add('is-visible');
+    };
+
+    const hideScrollElement = (el) => {
+      el.classList.remove('is-visible');
+    };
+
+    const handleScrollAnimation = () => {
+      scrollElements.forEach((el) => {
+        if (elementInView(el, 1.25)) { // Trigger a bit earlier
+          displayScrollElement(el);
+        } else if (!el.classList.contains('fade-in')) { // Don't hide elements that should stay
+          // You can uncomment the line below to make animations reset on scroll out
+          // hideScrollElement(el); 
+        }
+      });
+    };
+
+    // Initial check
+    handleScrollAnimation();
+    window.addEventListener('scroll', handleScrollAnimation);
+
+  </script>
+</body>
+</html>
